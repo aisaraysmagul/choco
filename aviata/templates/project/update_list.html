@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update data</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body style="margin-left: 15px">
+
+    <h1 class="display-4"> Search data </h1>
+
+    <form method="post">
+         {% csrf_token %}
+        <button type="submit" name="submit" value="Search" class="btn btn-outline-success">Search for new Data</button>
+    </form>
+    <br>
+    <p class="lead"> Bank : {{ bank }}</p>
+    <p class="lead"> Files : {{ files }} </p>
+    <p> {{ button }}</p>
+    {% if newFiles == True %}
+     <form method="post">
+         {% csrf_token %}
+        <button type="submit" name = "submit" value="Parse" class="btn btn-outline-info">Parse</button>
+    </form>
+    {% endif %}
+
+</body>
+</html>

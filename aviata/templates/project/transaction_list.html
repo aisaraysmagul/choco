@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Transactions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<style>
+    table {
+        font-family: open, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    td, th {
+        border: 1px solid #dddddd;
+        border: hidden;
+        text-align: left;
+        padding: 20px;
+        font-size: 18px;
+        color: black;
+    }
+    tr:last-child td:last-child {
+        border-bottom-right-radius: 10px;
+    }
+    tr:last-child td:first-child {
+        border-bottom-left-radius: 10px;
+    }
+    th {
+        background-color: #A3C66E;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #E6EBF1;
+    }
+    tr:nth-child(odd) {
+        background-color: white;
+    }
+    .c1 {
+        border-top-left-radius: 10px;
+    }
+    .c6 {
+        border-top-right-radius: 10px;
+    }
+    .sz1 {
+        width: 100px;
+        height: 40px;
+        font-size: 18px;
+        background-color: white;
+        color: black;
+    }
+    .sz2 {
+        width: 150px;
+        height: 35px;
+        background-color: white;
+        font-size: 17px;
+        color: black;
+    }
+    div {
+        text-align: center;
+    }
+</style>
+<body>
+    <h1 class="display-4"> Transaction List </h1>
+        <div class="input-group mb-3">
+            <div class="select2-container">
+                <form method='post'>
+                    {% csrf_token %}
+                    <div class="input-group-append">
+                    <select name ="name" class="custom-select" id="inputGroupSelect04" style="width:200px">
+                        <option value ="Kaspi">Kaspi</option>
+                        <option value ="Processing">Processing</option>
+                        <option value ="Tourism">Tourism</option>
+                        <option value ="Kazkom">Kazkom</option>
+                    </select>
+
+                     <input class="form-control" type="date" id="example-date-input" name="start_date" style= 'width:200px'>
+                        <input class="form-control" type="date" id="example-date-input" name ="end_date" style= 'width:200px'>
+                    <button type="submit" class="btn btn-outline-success">Submit</button></div>
+                </form>
+            </div>
+        </div>
+    <p>
+        {{ start }}
+    </p>
+
+    <form method="post">
+    {% csrf_token %}
+        <div class = "notequal" id ="title">
+            <h5 style="align-content: center; font-size: 30px"> Not Equal Datas </h5>
+            <table class="table">
+                <thead>
+                <th class="c1"> ID </th>
+                <th> DATE </th>
+                <th> TRANSFER </th>
+                <th> FEE </th>
+                <th> TOTAL </th>
+                <th class="c6"> BANK </th>
+                </thead>
+                {% for i in notEqual %}
+                <tr>
+                <td> {{ i.id }}</td>
+                <td> {{ i.date }}</td>
+                <td> {{ i.transfer }}</td>
+                <td> {{ i.fee }}</td>
+                <td> {{ i.total }}</td>
+                <td> {{ i.bank }}</td>
+                </tr>
+                {%  endfor %}
+            </table>
+            <button class="btn btn-outline-info center-block" type = "submit" name = "submit" value = "nondownload" >Download</button>
+        </div>
+        <br>
+        <div class = "equal overflow-x:auto;" >
+            <h5 style="align-content: center; font-size: 30px""> Equal Datas </h5>
+            <table class="table">
+                <thead>
+                    <th class="c1"> ID </th>
+                    <th > DATE </th>
+                    <th > TRANSFER </th>
+                    <th > FEE </th>
+                    <th > TOTAL </th>
+                    <th class="c6"> BANK </th>
+                </thead>
+                {% for i in equal %}
+                <tr>
+                <td> {{ i.id }}</td>
+                <td> {{ i.date }}</td>
+                <td> {{ i.transfer }}</td>
+                <td> {{ i.fee }}</td>
+                <td> {{ i.total }}</td>
+                <td> {{ i.bank }}</td>
+                </tr>
+                {%  endfor %}
+            </table>
+
+        <button class="btn btn-outline-info" type = "submit" name = "submit" value = "download">Download</button>
+        </div>
+    </form>
+
+
+
+</body>
+</html>
